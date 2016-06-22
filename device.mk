@@ -15,7 +15,7 @@
 #
 
 # Local variables (can be duplicate from BoardConfig.mk)
-TARGET_NO_SUPERUSER := false
+#TARGET_NO_SUPERUSER := false
 TARGET_RECOVERY_TWRP := true
 
 # overlay
@@ -23,6 +23,10 @@ DEVICE_PACKAGE_OVERLAYS += device/sony/nozomi/overlay
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
+
+#Bootanimation
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
 #PRODUCT_CHARACTERISTICS := nosdcard
 
@@ -217,8 +221,8 @@ PRODUCT_PACKAGES += \
     busybox
 
 # Boot Animation
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/bootanimation.zip:system/media/bootanimation.zip
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/bootanimation.zip:system/media/bootanimation.zip
 
 # Hw keys
 # layout : 1=> Modern Android 4.4+, 0=> Deprecated Android 2.3
@@ -236,15 +240,15 @@ PRODUCT_PACKAGES += \
     init.sh
 
 # Superuser
-ifneq ($(TARGET_NO_SUPERUSER),true)
-
-PRODUCT_PACKAGES += \
-    su
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=3
-
-endif
+#ifneq ($(TARGET_NO_SUPERUSER),true)
+#
+#PRODUCT_PACKAGES += \
+#    su
+#
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    persist.sys.root_access=3
+#
+#endif
 
 # SuperSU 2.65+ support
 PRODUCT_COPY_FILES += \
@@ -279,16 +283,16 @@ PRODUCT_PACKAGES += \
     Terminal
 
 # ROM Updater
-ifeq ($(ROM_BUILD_NUM),)
-  $(error No ROM_BUILD_NUM defined. please export the value (export ROM_BUILD_NUM=xx))
-endif
+#ifeq ($(ROM_BUILD_NUM),)
+#  $(error No ROM_BUILD_NUM defined. please export the value (export ROM_BUILD_NUM=xx))
+#endif
+#
+#PRODUCT_PACKAGES += \
+#    ROMUpdater
 
-PRODUCT_PACKAGES += \
-    ROMUpdater
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.version.updater=nAOSProm-6.0-b$(ROM_BUILD_NUM) \
-    persist.rom.updater.uri=https://www.dropbox.com/s/b17y0lrcsqsp2an/updates2.txt?dl=1
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.build.version.updater=nAOSProm-6.0-b$(ROM_BUILD_NUM) \
+#    persist.rom.updater.uri=https://www.dropbox.com/s/b17y0lrcsqsp2an/updates2.txt?dl=1
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
